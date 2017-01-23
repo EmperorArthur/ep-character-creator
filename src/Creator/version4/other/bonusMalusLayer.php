@@ -1,5 +1,6 @@
 <?php
 require_once '../../../php/EPAtom.php';
+require_once 'selectBox.php';
 
 function getBMHtml($bonusMalusArray,$parentName,$parentType){
 		//GRANTED BM
@@ -94,6 +95,21 @@ function getBMHtml($bonusMalusArray,$parentName,$parentType){
 }
 
 /**
+ * Print out a select button
+ */
+function printSelectButton($buttonId){
+    echo "<span class='iconPlusMinus iconebmChoice'  id='".$buttonId."' data-icon='&#x3a;'></span>";
+}
+
+
+/**
+ * Print out a deselect button
+ */
+function printDeselectButton($buttonId){
+    echo "<span class='iconPlusMinus iconebmRemChoice'  id='".$buttonId."' data-icon='&#x39;'></span>";
+}
+
+/**
  * Choose which item to print based on the BM type.
  */
 function choosePrintOption($bm,$parentName,$parentType){
@@ -141,11 +157,11 @@ function printSkillOptions($bm, $skill_list, $prefix_skill=false){
 	if($bm->forTargetNamed == null || $bm->forTargetNamed == ""){
 		echo $bm->name;
 		if(!empty($skill_list)){
-			echo "<select class='bmChoiceSelect' id='".$bm->getUid()."Sel'>";
+            $select = new selectBox('bmChoiceSelect',$bm->getUid()."Sel");
 			foreach($skill_list as $skill){
-				echo "<option value='".$skill->getUid()."'>".$skill->getPrintableName()."</option>";
+                $select->addSelectable($skill->getPrintableName(),$skill->getUid());
 			}
-			echo "</select>";
+            $select->printHtml();
 			echo "<span class='iconPlusMinus iconebmChoice'  id='".$bm->getUid()."' data-icon='&#x3a;'></span>";
 		}
 		else{
