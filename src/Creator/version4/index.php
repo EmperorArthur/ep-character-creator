@@ -24,6 +24,59 @@
         <div id="popup" data-name=""></div>
         <div id="loading_popup"><center><img src="<?php echo createDataURI("img/ajax-loader.gif","gif"); ?>"></center></div>
 
+        <div id="top_bar">
+            <button class="popupButton" id="show_menu">Menu</button>
+            <!-- REMAINAING POINTS - DYNAMIC CONTENT-->
+            <div class="points">
+                <div class='aPoint' id='RZ'>RZ <span id="rez_remain" class="rest"></span></div>
+                <div class='aPoint' id='CP'>CP <span id="creation_remain" class="rest"></span></div>
+                <div class='aPoint' id='AP'>AP <span id="aptitude_remain" class="rest"></span></div>
+                <div class='aPoint' id='ASR'>ASR <span id="asr_remain" class="rest"></span></div>
+                <div class='aPoint' id='KSR'>KSR <span id="ksr_remain" class="rest"></span></div>
+                <div class='aPoint' id='RP'>RP <span id="reputation_remain" class="rest"></span></div>
+                <div class='aPoint' id='CR'>CR <span id="credit_remain" class="rest"></span></div>
+            </div>
+            <!-- css hack to get the points button to the left of the remaining points -->
+            <div class="points">
+                <span class="btnhelp slowTransition" data-icon="&#x2a;" title="<?php echo $provider->getInfosById('points'); ?>"></span>
+            </div>
+            <!-- MENUS MUST BE LAST -->
+            <div id="menu">
+                <button class="popupButton" id="saveButton">
+                    <!-- <span class="button_icone" data-icon="&#x2d;"></span> -->
+                    Save
+                </button>
+                <button class="popupButton" id="loadButton">
+                    <!-- <span class="button_icone" data-icon="&#x30;"></span> -->
+                    Load
+                </button>
+                <button class="popupButton" id="validateButton">
+                    <!-- <span class="button_icone" data-icon="&#x2b;"></span> -->
+                    Check
+                </button>
+                <div class='dropdown'>
+                    <button class="popupButton" id="exportButton">
+                        <!-- <span class="button_icone" data-icon="&#x2c;"></span> -->
+                        Export
+                        &#x25BC;
+                    </button>
+                    <div class='dropdown-content'>
+                        <ul>
+                            <li><a id="exportPdfButton" href="#">PDF</a></li>
+                            <li><a id="exportTxtButton" href="#">TXT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="popupButton" id="settingsButton">
+                    <!-- <span class="button_icone" data-icon="&#x21;"></span> -->
+                    Reset
+                </button>
+                <button class="popupButton" id="aboutButton">
+                    <!-- <span class="button_icone" data-icon="&#x21;"></span> -->
+                    About
+                </button>
+            </div>
+        </div>
         <div id="container">
 
             <!-- Ego/Morph MENU - STATIC CONTENT-->
@@ -72,57 +125,8 @@
             <section id="tertiary" class="panel"></section>
             <section id="quaternary" class="panel"></section>
 
-        	<!-- REMAINAING POINTS - DYNAMIC CONTENT-->
-        	<section class="points">
-                <div id='RZ'>RZ <span id="rez_remain" class="rest"></span>
-                    <span class="btnhelp slowTransition" data-icon="&#x2a;" title="<?php echo $provider->getInfosById('points'); ?>"></span></span>
-                </div>
-                <div id='CP'>CP <span id="creation_remain" class="rest"></span>
-                    <span class="btnhelp slowTransition" data-icon="&#x2a;" title="<?php echo $provider->getInfosById('points'); ?>"></span></span>
-                </div>
-                <div id='AP'>AP <span id="aptitude_remain" class="rest"></span></div>
-                <div id='ASR'>ASR <span id="asr_remain" class="rest"></span></div>
-                <div id='KSR'>KSR <span id="ksr_remain" class="rest"></span></div>
-                <div id='RP'>RP <span id="reputation_remain" class="rest"></span></div>
-                <div id='CR'>CR <span id="credit_remain" class="rest"></span></div>
-        	</section>
         	<!-- MESSAGES FOR THE USER - DYNAMIC CONTENT-->
         	<section id="messages"></section>
-            <div id="menu">
-                <button class="popupButton" id="saveButton">
-                    <!-- <span class="button_icone" data-icon="&#x2d;"></span> -->
-                    Save
-                </button>
-                <button class="popupButton" id="loadButton">
-                    <!-- <span class="button_icone" data-icon="&#x30;"></span> -->
-                    Load
-                </button>
-                <button class="popupButton" id="validateButton">
-                    <!-- <span class="button_icone" data-icon="&#x2b;"></span> -->
-                    Check
-                </button>
-                <div class='dropdown'>
-                    <button class="popupButton" id="exportButton">
-                        <!-- <span class="button_icone" data-icon="&#x2c;"></span> -->
-                        Export
-                        &#x25BC;
-                    </button>
-                    <div class='dropdown-content'>
-                        <ul>
-                            <li><a id="exportPdfButton" href="#">PDF</a></li>
-                            <li><a id="exportTxtButton" href="#">TXT</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="popupButton" id="settingsButton">
-                    <!-- <span class="button_icone" data-icon="&#x21;"></span> -->
-                    Reset
-                </button>
-                <button class="popupButton" id="aboutButton">
-                    <!-- <span class="button_icone" data-icon="&#x21;"></span> -->
-                    About
-                </button>
-            </div>
         </div>
 
         <style><?php include "css/popup.css"; ?></style>
@@ -150,6 +154,16 @@
                     $(".active").removeClass("active");
                     $(this).toggleClass("active");
                     $("#tertiary_infos").css('visibility','hidden');
+                    return false;
+                });
+
+                $("#show_menu").click(function(){
+                    var menu = $('#menu');
+                    if(menu.css('display') == 'none'){
+                        menu.show();
+                    }else{
+                        menu.hide();
+                    }
                     return false;
                 });
             });

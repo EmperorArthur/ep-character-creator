@@ -3,22 +3,29 @@
  * For example, the menu buttons, and Points remaining display
 */
 
+/*The actual top bar*/
+#top_bar{
+    height: 3.5em;
+    background-color: rgba(242, 242, 242, .8);
+}
+
 /* Menu buttons, and dropdowns */
 
 #menu{
-    width: 6.2em;   /*Same as .popupButton, but with a little extra for the 1px margin .popupButton has*/
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
+    width: 6em;
+    position: relative;
     z-index: 3;
+/*     background-color: rgba(242, 242, 242, .8); */
+    display: None;
 }
 
 .popupButton{
     height: 3.5em;
-    width: 6.1em;
+    width: 6em;
     font-family: 'Lato', sans-serif;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
+    padding-left: 1.25em;
 /*  Make the button oval shaped */
     border-radius: 2.5em;
     -moz-border-radius: 2.5em;
@@ -32,8 +39,8 @@
 }
 
 .popupButton:hover {
-  color: rgb(186, 0, 80);
-  background-color: rgba(254, 254, 254, .85);
+    color: rgb(186, 0, 80);
+    background-color: rgba(254, 254, 254, .85);
 }
 
 .button_icone{
@@ -51,17 +58,17 @@
 
 /*remaining points*/
 .points{
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 16em;
+    float: right;
     margin:0;
-    background-color: rgba(242, 242, 242, .8);
-    width: 120px;
-    border-bottom: 1px solid rgba(148,155,153,.6);
-    border-top: 1px solid rgba(245, 245, 245, .6);
     font-size:1.25em;
     color: hsl(200,10%,40%);
-    text-align: justify;
+/*     text-align: justify; */
+}
+
+.aPoint{
+    width: 5em;
+    display: inline-block;
 }
 
 /* Hide and show dropdown menus*/
