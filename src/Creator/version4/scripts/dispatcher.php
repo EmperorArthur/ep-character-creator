@@ -476,11 +476,11 @@ if (isset($_POST['addRemMorph'])) {
 
 //GET MORPH SETTINGS
 if (isset($_POST['morphSettings'])) {
-    $morph = getAtomByName($_SESSION['cc']->character->morphs,$_POST['morphSettings']);
+    $_SESSION['currentMorph'] =  $_POST['morphSettings'];
+    $morph = $_SESSION['cc']->getCurrentMorphsByName($_SESSION['currentMorph']);
     if(!isset($morph)){
         treatCreatorErrors($return, "Morph does not exist (".$_SESSION['currentMorph'].")");
     }
-    $_SESSION['currentMorph'] =  $_POST['morphSettings'];
     $return['morphName'] = $morph->name;
     $return['nickname'] = $morph->nickname;
     $return['location'] = $morph->location;
@@ -498,11 +498,11 @@ if (isset($_POST['currentMorphUsed'])) {
 
 //SET MORPH SETTINGS
 if (isset($_POST['morphSettingsChange'])) {
-    $morph = getAtomByName($_SESSION['cc']->getMorphs(),$_POST['morphSettingsChange']);
+    $_SESSION['currentMorph'] =  $_POST['morphSettingsChange'];
+    $morph = $_SESSION['cc']->getCurrentMorphsByName($_SESSION['currentMorph']);
     if(!isset($morph)){
         treatCreatorErrors($return, "Morph does not exist (".$_SESSION['currentMorph'].")");
     }
-    $_SESSION['currentMorph'] =  $_POST['morphSettingsChange'];
     $morph->nickname = $_POST['morphNickname'];
     $morph->location = $_POST['morphLocation'];
     $morph->age = $_POST['morphAge'];
