@@ -3,7 +3,6 @@
     <div class="uk-child-width-expand@s" uk-grid>
         <div>
         <div class="uk-card uk-card-default uk-card-body">
-<!--            <red-watermark>Firewall Classified (Top Secret)</red-watermark>-->
             <h3 class="uk-card-title">Player Information</h3>
             <span class="btnhelp slowTransition icon-question" :title="playerDescription"></span>
             <label>
@@ -14,6 +13,7 @@
                 Notes:
                 <textarea class="uk-textarea"></textarea>
             </label>
+            <div class="watermark classified"></div>
         </div>
         </div>
         <div>
