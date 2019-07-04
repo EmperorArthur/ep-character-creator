@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 import store from '../store';
 
+import ego from "../pages/Ego";
+
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -17,6 +19,11 @@ export const router = new VueRouter({
             path: '/welcome',
             name: 'welcome',
             component: require('../pages/Welcome').default
+        },
+        {
+            path: '/ego',
+            name: 'ego',
+            component: ego
         },
     ],
 });
